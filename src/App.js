@@ -1,23 +1,45 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import TodoList from './components/Header';
 
 function App() {
+  const [tasks, setTasks] = useState([
+    { id: 1, title: 'Tirar o lixo', completed: false },
+    { id: 2, title: 'Arrumar a cama', completed: true },
+    { id: 3, title: 'Fazer os temas do colégio', completed: false },
+  ]);
+
+  const [newTaskTitle, setNewTaskTitle] = useState('');
+
+  const addTask = () => {
+    if (newTaskTitle.trim()) {
+      const newTask = {
+        id: tasks.length + 1,
+        title: newTaskTitle,
+        completed: false,
+      };
+      setTasks([...tasks, newTask]);
+      setNewTaskTitle('');
+    }
+  };
+
+  const toggleTaskCompletion = (taskId) => {
+    setTasks(tasks.map(task => 
+      task.id === taskId ? { ...task, completed: !task.completed } : task
+    ));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Lista de Tarefas</h1>
+      <input
+        type="text"
+        placeholder="Nova Tarefa"
+        value={newTaskTitle}
+        onChange={(e) => setNewTaskTitle(e.target.value)}
+      />
+      <button onClick={addTask}>Adicionar Tarefa</button>
+      <TodoList tasks={tasks} toggleTaskCompletion={toggleTaskCompletion} />
     </div>
   );
 }
