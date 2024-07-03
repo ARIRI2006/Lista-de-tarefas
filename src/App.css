@@ -1,4 +1,5 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 .App {
   text-align: center;
   
@@ -11,10 +12,17 @@
   border-radius: 5px;
 }
 
-.button{
-  border: 100px solid #000000;
-}
-
 .completed {
   text-decoration: line-through;
+}
+
+body {
+  margin: 0;
+  background-color: #f0f0f0; /* Background color */
+  background-image: url('/sor.jpeg'); /* Background image */
+  background-size: cover; /* Makes sure the image covers the entire background */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Makes the background image fixed while scrolling */
+  background-position: center; /* Centers the background image */
+  color: bisque;
 }
